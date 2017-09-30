@@ -1,0 +1,64 @@
+/**index.wxss**/
+.userinfo {
+  width: 100%;
+  display: flex;
+  padding: 20rpx 20rpx;
+  margin-top: 20rpx;
+  border-bottom: solid #efefef 1rpx;
+}
+
+.userinfo-periods {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 32rpx;
+}
+
+.userinfo-period {
+  font-size: .8em;
+  margin: 0 8rpx;
+}
+
+.userinfo-period.active {
+  color: #32A14A;
+}
+
+.userinfo-number {
+  display: inline-flex;
+  font-size: .6em;
+  margin-left: 32rpx;
+  width: 32rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+}
+
+.userinfo-avatar {
+  width: 88rpx;
+  height: 64rpx;
+  margin-left: 16rpx;
+  border-radius: 50%;
+}
+
+.userinfo-body {
+  display: flex;
+  flex-direction: column;
+  font-size: .6em;
+  width: 100%;
+  padding-left: 20rpx;
+  padding-right: 32rpx;
+}
+
+.userinfo-summary, .userinfo-items {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 32rpx;
+  line-height: 32rpx;
+}
+
+.userinfo-item-icon {
+  width: 32rpx;
+  height: 32rpx;
+}

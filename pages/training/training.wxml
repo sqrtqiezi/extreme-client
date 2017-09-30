@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="page-head">
+    <view class="page-head-title">新建活动</view>
+  </view>
+
+  <view class="page-body">
+    <view class="page-section">
+
+      <view class="weui-cells__title">项目</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{types}}">
+              <view class="weui-input">{{types[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">日期</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <picker mode="date" value="{{date}}" start="{{startDate}}" end="{{endDate}}" bindchange="bindDateChange">
+              <view class="weui-input">{{date}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">距离</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input class="weui-input" type="digit" placeholder="" value="{{distance}}" bindchange="bindDistanceChange" />
+        </view>
+      </view>
+
+      <view class="weui-cells__title">时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+            <picker mode="time" value="{{time}}" start="00:01:00" end="05:59:00" bindchange="bindTimeChange">
+              <view class="weui-input">{{time}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="weui-cells__title">描述</view>
+      <view class="textarea-wrp">
+        <textarea style="height: 3em" value="{{description}}" bindblur="bindDescriptionChange"/>
+      </view>
+
+      <view class="weui-cells__title">图片</view>
+      <view class="photos-wrp" style="min-height: 3em;">
+        <image mode="aspectFill" class="photo" wx:key="{{photo}}" wx:for="{{photos}}" wx:for-item="photo" src="{{photo}}" 
+          data-photo="{{photo}}" data-photos="{{photos}}" />
+        <view class="photo-input" wx:if="{{ photos.length < 9 }}" bindtap="photoChoose">+</view>
+      </view>
+
+    </view>
+
+    <view class="page-section actions">
+      <button type="primary" size="mini" bindtap="submit"> 保存 </button>
+      <button type="default" size="mini" bindtap="cancel"> 取消 </button>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,30 @@
+<!--logs.wxml-->
+<view class="container userstats-list">
+  <view class="page-head">
+    <view class="page-head-title">我的动态</view>
+  </view>
+  <view class="page-body">
+  <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 添加活动 </button>
+
+   <view class="userstats" wx:for="{{trainings}}" wx:key="id" wx:for-item="training">
+    <view class="userstats-heading">
+      <text class="userstats-time">{{training.trained_at}}</text>
+      <image class="userstats-type" wx:if="{{training.type === 0}}" src="/images/swim.png"/>
+      <image class="userstats-type" wx:elif="{{training.type === 1}}" src="/images/cycle.png"/>
+      <image class="userstats-type" wx:else src="/images/run.png"/>
+      <text class="userstats-distance">{{training.distance}}km</text>
+      <text class="userstats-distance">{{training.consumption_time}}</text>
+      <text bindtap="deleteTraining" data-id="{{training.id}}" class="userstats-btn-delete">删除</text>
+    </view>
+    <view class="userstats-body">
+      <view class="userstats-message">
+        {{training.description}}
+      </view>
+      <view class="userstats-photos">
+        <image mode="aspectFill" class="userstats-photo" wx:key="{{photo}}" wx:for="{{training.photos}}" wx:for-item="photo" src="{{photo}}" 
+          bindtap="previewPhotos" data-photo="{{photo}}" data-photos="{{training.photos}}" />
+      </view>
+    </view>
+  </view> 
+  </view>
+</view>

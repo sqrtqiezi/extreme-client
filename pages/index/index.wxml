@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="container userinfo-list">
+  <view class="page-head">
+    <view class="page-head-title">排行榜</view>
+  </view>
+  <view class="page-body">
+  <view class="userinfo-periods">
+    <view bindtap="changePeriod" data-period="month"
+        class="userinfo-period {{period === 'month' ? 'active' : ''}}">本月</view>
+    <view bindtap="changePeriod" data-period="week"
+          class="userinfo-period {{period === 'week' ? 'active' : ''}}">本周</view>
+    <view bindtap="changePeriod" data-period="day"
+          class="userinfo-period {{period === 'day' ? 'active' : ''}}">本日</view>
+  </view>
+  <navigator open-type="navigate" class="userinfo" url="/pages/stats/stats?id=1"
+             wx:for="{{rankings}}" wx:key="ranking"
+             wx:for-index="idx" wx:for-item="ranking">
+    <text class="userinfo-number">{{idx + 1}}</text>
+    <image src="{{ranking.user.avatar_url}}" class="userinfo-avatar" />
+    <view class="userinfo-body">
+      <view class="userinfo-summary">
+        <text class="userinfo-name">{{ranking.user.nick_name}}</text>
+        <text class="userinfo-score">总分：{{ranking.score}}</text>
+      </view>
+      <view class="userinfo-items">
+        <view class="userinfo-item">
+          <image src="/images/run.png" class="userinfo-item-icon" />
+          <text> {{ranking.run_distance}}</text>
+        </view>
+
+        <view class="userinfo-item">
+          <image src="/images/cycle.png" class="userinfo-item-icon" />
+          <text> {{ranking.cycle_distance}}</text>
+        </view>
+
+        <view class="userinfo-item">
+          <image src="/images/swim.png" class="userinfo-item-icon" />
+          <text> {{ranking.swim_distance}}</text>
+        </view>
+      </view>
+    </view>
+  </navigator>
+  </view>
+</view>

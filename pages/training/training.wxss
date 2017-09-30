@@ -1,0 +1,43 @@
+@import "../common/lib/weui.wxss";
+
+.container {
+  height: 2000rpx;
+}
+
+textarea {
+  width: 700rpx;
+  padding: 25rpx 0;
+}
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+}
+
+.photos-wrp {
+  padding: 0 25rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.photo, .photo-input {
+  width: 200rpx;
+  height: 200rpx;
+  border: solid #efefef 1px;
+  color: #efefef;
+  background-color: #fff;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actions {
+  margin: 0 auto;
+  width: 40%;
+}
+
+.actions button {
+  margin-right: 10rpx;
+}
