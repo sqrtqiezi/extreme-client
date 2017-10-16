@@ -1,4 +1,5 @@
-var util = require('../../utils/util.js')
+const { request } = require('../../utils/network.js')
+
 Page({
   data: {
     userName: '',
@@ -11,44 +12,15 @@ Page({
   },
   deleteTraining(e) {
     const id = e.currentTarget.dataset.id
-    const self = this
-
-    wx.showLoading({
-      title: '正在删除...',
-    })
-
-    // 读取 token
-    wx.getStorage({
-      key: 'token',
-      success(res) {
-        const token = res.data
-
-        // 删除记录
-        wx.request({
-          url: 'https://hfextreme.cn/api/trainings/' + id ,
-          header: {
-            'content-type': 'application/json',
-            'Authorization': 'Bearer ' + token
-          },
-          method: 'DELETE',
-          success(res) {
-            self.refresh()
-          },
-          complete() {
-            wx.hideLoading()
-          }
-        })
-      }
-    })
+    request(`https://hfextreme.cn/api/trainings/${id}`, {},'DELETE')
+      .then((res) => {
+        this.refresh()
+      })
   },
   onLoad(option) {
-    console.log(option.query)
+    
   },
   onShow() {
-    self = this
-    wx.showLoading({
-      title: '加载中...',
-    })
     this.refresh()
   },
   previewPhotos(e) {
@@ -59,31 +31,12 @@ Page({
       urls: photos
     })
   },
-
   refresh() {
-    // 读取 token
-    wx.getStorage({
-      key: 'token',
-      success: function (res) {
-        const token = res.data
-
-        // 获取用户信息
-        wx.request({
-          url: 'https://hfextreme.cn/api/trainings',
-          header: {
-            'content-type': 'application/json',
-            'Authorization': 'Bearer ' + token
-          },
-          success: (res) => {
-            self.setData({
-              trainings: res.data.data
-            })
-          },
-          complete() {
-            wx.hideLoading()
-          }
+    request('https://hfextreme.cn/api/trainings')
+      .then((res) => {
+        this.setData({
+          trainings: res.data.data
         })
-      },
-    })
+      })
   }
 })

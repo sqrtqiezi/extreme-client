@@ -1,5 +1,7 @@
 //index.js
-var util = require('../../utils/util.js')
+const util = require('../../utils/util.js')
+const { request } = require('../../utils/network.js')
+
 Page({
   data: {
     rankings: [],
@@ -12,7 +14,6 @@ Page({
     this.setData({
       period: event.currentTarget.dataset.period
     })
-
     this.refresh()
   },
   getType() {
@@ -26,36 +27,12 @@ Page({
   },
   refresh() {
     const self = this
-
-    wx.getStorage({
-      key: 'token',
-      success: function (res) {
-        const token = res.data
-
-        wx.showLoading({
-          title: '加载中...',
-        })
-
-        wx.request({
-          url: 'https://hfextreme.cn/api/rankings',
-          method: 'GET',
-          header: {
-            'content-type': 'application/json',
-            'Authorization': 'Bearer ' + token
-          },
-          data: {
-            'type': self.getType()
-          },
-          success(res) {
-            self.setData({
-              rankings: res.data.data
-            })
-          },
-          complete() {
-            wx.hideLoading()
-          }
-        })
-      },
+    request('https://hfextreme.cn/api/rankings', {
+      'type': self.getType()
+    }).then(function(res) {
+      self.setData({
+        rankings: res.data.data
+      })
     })
   }
 })

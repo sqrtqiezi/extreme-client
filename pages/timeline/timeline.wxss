@@ -1,0 +1,94 @@
+.userstats {
+  display: flex;
+  margin-top: 32rpx;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.userstats-heading {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 22%;
+  margin-left: 22rpx;
+}
+
+.userstats-avatar {
+  width: 110rpx;
+  height: 110rpx;
+}
+
+.userstats-type {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.userstats-time {
+  font-weight: bold;
+  font-size: .8em;
+  line-height: 32rpx;
+  width: 100%;
+  margin-bottom: 12rpx;
+}
+
+.userstats-distance {
+  font-size: .6em;
+  width: 60%;
+  margin-left: 4rpx;
+}
+
+.userstats-btn-delete {
+  width: 100%;
+  padding-left: 16rpx;
+  font-size: 10px;
+  background-color: transparent;
+  color: yellowgreen;
+}
+
+.userstats-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 32rpx;
+}
+
+.userstats-message {
+  font-size: .8em;
+  vertical-align: text-top;
+}
+
+.userstats-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+.userstats-photo {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 10rpx;
+  margin-right: 10rpx;
+}
+
+.userstats.active .userstats-photo {
+  width: 100%;
+  height: auto;
+}
+
+.btn-add-event {
+  margin-top: 32rpx;
+}
+
+.load-message {
+  margin: 5rpx 0;
+  color: silver;
+  align-self: center;
+}
