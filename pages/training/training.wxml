@@ -1,11 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="page-head">
-    <view class="page-head-title">新建活动</view>
-  </view>
-
   <view class="page-body">
     <view class="page-section">
+
+      <view wx:if="{{ validator.invalid }}" class='error-message'>{{ validator.message }}</view>
 
       <view class="weui-cells__title">项目</view>
       <view class="weui-cells weui-cells_after-title">
@@ -55,14 +53,16 @@
       <view class="weui-cells__title">图片</view>
       <view class="photos-wrp" style="min-height: 3em;">
         <image mode="aspectFill" class="photo" wx:key="{{photo}}" wx:for="{{photos}}" wx:for-item="photo" src="{{photo}}" 
-          data-photo="{{photo}}" data-photos="{{photos}}" />
+          data-photo="{{photo}}" data-photos="{{photos}}" >
+          <view class='photo-remove' data-photo="{{photo}}" bindtap="photoRemove">x</view>
+        </image>
         <view class="photo-input" wx:if="{{ photos.length < 9 }}" bindtap="photoChoose">+</view>
       </view>
 
     </view>
 
     <view class="page-section actions">
-      <button type="primary" size="mini" bindtap="submit"> 保存 </button>
+      <button type="primary" size="mini" bindtap="submit"> 打卡 </button>
       <button type="default" size="mini" bindtap="cancel"> 取消 </button>
     </view>
   </view>

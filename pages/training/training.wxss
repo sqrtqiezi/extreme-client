@@ -1,4 +1,5 @@
 @import "../common/lib/weui.wxss";
+@import "../common/lib/app.wxss";
 
 .container {
   height: 2000rpx;
@@ -31,6 +32,22 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.photos-wrp > image {
+  position: relative;
+}
+
+.photos-wrp .photo-remove {
+  font-size: 1.5em;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 20rpx;
+}
+
+.photos-wrp .photo-remove:hover {
+  color: #6f1a60;
 }
 
 .actions {

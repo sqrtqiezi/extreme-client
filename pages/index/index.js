@@ -7,7 +7,7 @@ Page({
     rankings: [],
     period: 'month'
   },
-  onShow() {
+  onLoad() {
     this.refresh()
   },
   changePeriod(event) {
@@ -21,9 +21,6 @@ Page({
     if(this.data.period === 'week') return 1
     //else Day
     return 0;
-  },
-  goStats(e) {
-    console.log(e)
   },
   refresh() {
     const self = this

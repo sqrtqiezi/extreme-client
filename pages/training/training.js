@@ -1,4 +1,5 @@
 const { request, uploadFile } = require('../../utils/network.js')
+const { setTimelineDirty } = require('../../utils/util.js')
 
 Page({
   data: {
@@ -10,8 +11,13 @@ Page({
     distance: 0,
     time: '00:01:00',
     description: '',
-    photos: []
+    photos: [],
+    validator: {
+      invalid: false,
+      message: ''
+    }
   },
+
   onLoad() {
     const now = new Date()
     this.setData({
@@ -20,31 +26,37 @@ Page({
       date: now.toISOString().substring(0, 10),
     })
   },
+
   bindPickerChange(e) {
     this.setData({
       index: e.detail.value
     })
   },
+
   bindDateChange(e) {
     this.setData({
       date: e.detail.value
     })
   },
+
   bindTimeChange(e) {
     this.setData({
       time: e.detail.value
     })
   },
+
   bindDistanceChange(e) {
     this.setData({
       distance: e.detail.value
     })
   },
+
   bindDescriptionChange(e) {
     this.setData({
       description: e.detail.value
     })
   },
+
   photoChoose(e) {
     wx.chooseImage({
       count: 1,
@@ -61,7 +73,68 @@ Page({
       }
     })
   },
-  submit: function (e) {
+
+  photoRemove(e) {
+    let photos
+    if (this.data.photos.length <= 1) {
+      photos = []
+    } else {
+      const photo = e.target.dataset.photo
+      const index = this.data.photos.findIndex((item) => {
+        return item === photo
+      })
+      photos = this.data.photos.slice(index, index + 1)
+    }
+    console.log(photos)
+    this.setData({
+      photos: photos
+    })
+  },
+
+  checkForm() {
+    if (this.data.distance <= 0) {
+      this.showError('运动距离不能小于 0')
+      return false
+    }
+    if (this.data.description === '') {
+      this.showError('在描述里随便说点什么吧')
+      return false
+    }
+    if (this.data.photos.length === 0) {
+      this.showError('请发图以证明本次打卡')
+      return false
+    }
+
+    return true
+  },
+
+  showError(message) {
+    this.setData({
+      validator: {
+        invalid: true,
+        message: message
+      }
+    })
+
+    setTimeout(() => {
+      this.resetValidator()
+    }, 2000)
+  },
+
+  resetValidator() {
+    this.setData({
+      validator: {
+        invalid: false,
+        message: ''
+      }
+    })
+  },
+
+  submit(e) {
+    if (!this.checkForm()) {
+      return
+    }
+
     request('https://hfextreme.cn/api/trainings', {
       type: this.data.index,
       trained_at: this.data.date,
@@ -78,6 +151,7 @@ Page({
           duration: 2000,
           mask: true
         })
+        setTimelineDirty(true)
         wx.navigateBack()
       })
       .catch((err) => {
@@ -88,6 +162,7 @@ Page({
         })
       })
   },
+
   cancel(e) {
     wx.navigateBack()
   }

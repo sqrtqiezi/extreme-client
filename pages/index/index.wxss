@@ -13,6 +13,7 @@
   flex-direction: row;
   justify-content: flex-end;
   padding-right: 32rpx;
+  margin-top: 32rpx;
 }
 
 .userinfo-period {
@@ -21,7 +22,9 @@
 }
 
 .userinfo-period.active {
-  color: #32A14A;
+  font-size: 1em;
+  font-weight: bold;
+  color: #6f1a60;
 }
 
 .userinfo-number {

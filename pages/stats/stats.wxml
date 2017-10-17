@@ -1,10 +1,10 @@
 <!--logs.wxml-->
 <view class="container userstats-list">
   <view class="page-head">
-    <view class="page-head-title">我的动态</view>
+    <view class="page-head-title">{{ userName }}的动态</view>
   </view>
   <view class="page-body">
-  <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 添加活动 </button>
+  <button wx:if="{{ isCurrentUser }}" class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 打个卡 </button>
 
    <view class="userstats" wx:for="{{trainings}}" wx:key="id" wx:for-item="training">
     <view class="userstats-heading">
@@ -14,7 +14,7 @@
       <image class="userstats-type" wx:else src="/images/run.png"/>
       <text class="userstats-distance">{{training.distance}}km</text>
       <text class="userstats-distance">{{training.consumption_time}}</text>
-      <text bindtap="deleteTraining" data-id="{{training.id}}" class="userstats-btn-delete">删除</text>
+      <text wx:if="{{ isCurrentUser }}" bindtap="deleteTraining" data-id="{{training.id}}" class="userstats-btn-delete">删除</text>
     </view>
     <view class="userstats-body">
       <view class="userstats-message">

@@ -1,7 +1,7 @@
 <!--logs.wxml-->
 <view class="container userstats-list">
   <view class="page-body">
-    <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 添加活动 </button>
+    <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 打个卡 </button>
 
     <view class="userstats" wx:for="{{trainings}}" wx:key="id" wx:for-item="training">
       <view class="userstats-heading">
@@ -25,6 +25,6 @@
       </view>
     </view>
 
-    <text class='load-message' wx:if="{{ current_page === last_page }}">没有更多了～</text>
+    <text class='load-message' wx:if="{{ isAllLoaded }}">没有更多了～</text>
   </view>
 </view>

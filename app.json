@@ -7,27 +7,27 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#6f1a60",
     "navigationBarTitleText": "极致小助手",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#6f1a60",
     "borderStyle": "black",
     "backgroundColor": "#fff",
     "list": [
       {
-        "text": "首页",
+        "text": "排名",
         "pagePath": "pages/index/index",
-        "iconPath": "images/icon_component.png",
-        "selectedIconPath": "images/icon_component_HL.png"
+        "iconPath": "images/icon_ranking.png",
+        "selectedIconPath": "images/icon_ranking_HL.png"
       },
       {
-        "text": "动态",
+        "text": "跑友圈",
         "pagePath": "pages/timeline/timeline",
-        "iconPath": "images/icon_API.png",
-        "selectedIconPath": "images/icon_API_HL.png"
+        "iconPath": "images/icon_component.png",
+        "selectedIconPath": "images/icon_component_HL.png"
       }
     ]
   }

@@ -1,50 +1,60 @@
 // pages/timeline.js
 const { request } = require('../../utils/network.js')
+const { isTimelineDirty, setTimelineDirty } = require('../../utils/util.js')
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     trainings: [],
-    last_page: 0,
-    current_page: 0
+    lastPage: 0,
+    currentPage: 0,
+    isAllLoaded: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad (options) {
-    this.loadNew()
+  onLoad() {
+    console.log('on load')
+    this.refresh()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
+  onShow () {
+    console.log('on show')
+    isTimelineDirty().then(() => this.refresh())
+  },
+
   onReachBottom () {
     this.loadNew()
   },
 
-  isAllLoaded() {
-    return this.data.last_page === this.data.current_page
-      && this.data.last_page !== 0;
+  addTraining() {
+    wx.navigateTo({
+      url: '/pages/training/training'
+    })
+  },
+
+  refresh() {
+    this.setData({
+      currentPage: 0,
+      isAllLoaded: false,
+      trainings: []
+    })
+    this.loadNew()
+
+    setTimelineDirty(false)
   },
 
   loadNew() {
-    if (this.isAllLoaded()) {
+    if (this.data.isAllLoaded) {
       return
     }
-    const page = this.data.current_page + 1
-    request(`https://hfextreme.cn/api/timeline?page=${page}`)
+    request(`https://hfextreme.cn/api/timeline?page=${this.data.currentPage + 1}`)
       .then((res) => {
         let temp = this.data.trainings
         temp = temp.concat(res.data.data)
 
         this.setData({
           trainings: temp,
-          current_page: res.data.meta.current_page,
-          last_page: res.data.meta.last_page,
+          currentPage: res.data.meta.current_page,
+          lastPage: res.data.meta.last_page,
+          isAllLoaded: res.data.last_page === res.data.current_page
         })
       })
   },

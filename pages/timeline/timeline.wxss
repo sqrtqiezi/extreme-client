@@ -1,3 +1,6 @@
+@import "../common/lib/weui.wxss";
+@import "../common/lib/app.wxss";
+
 .userstats {
   display: flex;
   margin-top: 32rpx;
