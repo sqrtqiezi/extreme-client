@@ -52,7 +52,7 @@ form{
   display: inline-block;
   padding: 0 40rpx 20rpx 40rpx;
   font-size: 32rpx;
-  color: #FFFFFF;
+  color: #9B9B9B;
 }
 .page-head-line{
   margin: 0 auto;

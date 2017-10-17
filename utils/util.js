@@ -37,7 +37,6 @@ function isTimelineDirty() {
     wx.getStorage({
       key: 'timeline-dirty',
       success(res) {
-        console.log(res)
         if (res.data) {
           resolve()
         } else {

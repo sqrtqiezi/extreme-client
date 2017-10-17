@@ -14,12 +14,6 @@
   justify-content: flex-start;
 }
 
-.page-head {
-  color: #fff;
-  width: 100%;
-  background-color: #6f1a60;
-}
-
 .userstats-heading {
   display: flex;
   justify-content: flex-start;

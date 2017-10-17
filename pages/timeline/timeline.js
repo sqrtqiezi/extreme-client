@@ -11,12 +11,10 @@ Page({
   },
 
   onLoad() {
-    console.log('on load')
     this.refresh()
   },
 
   onShow () {
-    console.log('on show')
     isTimelineDirty().then(() => this.refresh())
   },
 
