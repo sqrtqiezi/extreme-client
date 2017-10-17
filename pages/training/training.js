@@ -75,17 +75,16 @@ Page({
   },
 
   photoRemove(e) {
-    let photos
-    if (this.data.photos.length <= 1) {
-      photos = []
-    } else {
-      const photo = e.target.dataset.photo
-      const index = this.data.photos.findIndex((item) => {
-        return item === photo
-      })
-      photos = this.data.photos.slice(index, index + 1)
-    }
-    console.log(photos)
+    let photos = this.data.photos
+
+    const photo = e.target.dataset.photo
+    const index = this.data.photos.findIndex((item) => {
+      return item === photo
+    })
+    photos.splice(index, 1)
+
+    console.dir(photos)
+
     this.setData({
       photos: photos
     })

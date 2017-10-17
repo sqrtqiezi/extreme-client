@@ -49,6 +49,11 @@ App({
                 data: data.user_id,
               })
 
+              wx.setStorage({
+                key: 'nick_name',
+                data: data.nick_name,
+              })
+
               // 后台保存 userInfo
               if (!data.has_info) {
                 self.getUserInfo((userInfo) => {

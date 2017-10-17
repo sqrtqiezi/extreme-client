@@ -247,3 +247,44 @@ form{
   text-align: center;
   z-index: 999;
 }
+
+/* comments */
+.comments {
+  display: flex;
+  flex-direction: column;
+}
+
+.comments > .comment-box {
+  width:  100%;
+  height:  auto;
+  display: flex;
+  margin-bottom: 20rpx;
+}
+
+.comment-box > input {
+  font-size: .8em;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  line-height: 1.5em;
+}
+
+.comments > .comment {
+  width:  100%;
+  line-height: 1.5em;
+}
+
+.comments > .comment:hover {
+  background-color: silver;
+}
+
+.comment-body {
+  line-height: 1.5em;
+  word-break: break-all;
+  color: black;
+}
+
+.comment-owner {
+  color: #6f1a60;
+}

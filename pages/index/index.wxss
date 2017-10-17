@@ -61,6 +61,12 @@
   line-height: 32rpx;
 }
 
+.userinfo-item > text {
+  line-height: 13rpx;
+  height: 13rpx;
+  font-size: 1.4em;
+}
+
 .userinfo-item-icon {
   width: 32rpx;
   height: 32rpx;

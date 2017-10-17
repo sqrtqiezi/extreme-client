@@ -1,6 +1,8 @@
 <!--logs.wxml-->
 <view class="container userstats-list">
   <view class="page-body">
+    <view wx:if="{{ validator.invalid }}" class='error-message'>{{ validator.message }}</view>
+    
     <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 打个卡 </button>
 
     <view class="userstats" wx:for="{{trainings}}" wx:key="id" wx:for-item="training">
@@ -22,6 +24,21 @@
           <image mode="aspectFill" class="userstats-photo" wx:key="{{photo}}" wx:for="{{training.photos}}" wx:for-item="photo" src="{{photo}}" 
             bindtap="previewPhotos" data-photo="{{photo}}" data-photos="{{training.photos}}" />
         </view>
+
+        <view class='comments'>
+          <view class='comment-box'>
+            <input maxlength='-1' placeholder='评论一下～' data-id="{{ training.id }}" confirm-type="send" bindconfirm="submitComment" value='{{ commentValue }}'>
+            </input>
+            <!-- <button data-id="{{ training.id }}" ontap="submitComment">保存</button> -->
+          </view>
+          <view class='comment' wx:key='{{ comment }}' wx:for='{{ training.comments }}' wx:for-item='comment'
+            data-comment='{{ comment }}' data-training='{{ training }}'  ontap='deleteComment'>
+            <text class='comment-body'>
+              <text class='comment-owner'>{{ comment.owner.nick_name }}</text>：{{ comment.text }}
+            </text>
+          </view>
+        </view>
+
       </view>
     </view>
 
