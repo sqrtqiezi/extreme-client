@@ -16,20 +16,24 @@ Page({
   },
 
   onLoad() {
-    this.refresh()
+    console.log('Page Timeline Loaded')
+    this.loadNew(true)
   },
 
   onShow () {
-    isTimelineDirty().then(() => this.refresh())
+    console.log('Page Timeline show')
+    isTimelineDirty().then(() => this.this.loadNew(true))
   },
 
   onReachBottom () {
+    console.log('Page Timeline reach bottom')
     this.loadNew()
   },
 
   onPullDownRefresh() {
-    console.log('pull down refresh')
-    this.refresh()
+    console.log('Page Timeline pull down refresh')
+    wx.stopPullDownRefresh()
+    this.loadNew(true)
   },
 
   addTraining() {
@@ -38,25 +42,31 @@ Page({
     })
   },
 
-  refresh() {
-    this.setData({
-      currentPage: 0,
-      isAllLoaded: false,
-      trainings: []
-    })
-    this.loadNew()
+  loadNew(refresh = false) {
+    if(this.data.isLoading) {
+      return
+    } else {
+      this.setData({
+        isLoading: true
+      })
+    }
 
-    setTimelineDirty(false)
-
-    wx.stopPullDownRefresh()
-  },
-
-  loadNew() {
-    if (this.data.isAllLoaded) {
+    if (!refresh && this.data.isAllLoaded) {
       return
     }
+    if (refresh) {
+      this.setData({
+        currentPage: 0,
+        isAllLoaded: false,
+        trainings: []
+      })
+      setTimelineDirty(false)
+    }
+    
     request(`https://hfextreme.cn/api/timeline?page=${this.data.currentPage + 1}`)
       .then((res) => {
+        console.log('Timeline data loaded')
+
         let temp = this.data.trainings
         temp = temp.concat(res.data.data)
 
@@ -64,7 +74,15 @@ Page({
           trainings: temp,
           currentPage: res.data.meta.current_page,
           lastPage: res.data.meta.last_page,
-          isAllLoaded: res.data.last_page === res.data.current_page
+          isAllLoaded: res.data.meta.last_page === res.data.meta.current_page
+        })
+
+        this.setData({
+          isLoading: false
+        })
+      }).catch(() => {
+        this.setData({
+          isLoading: false
         })
       })
   },

@@ -34,11 +34,11 @@
         </view>
       </view>
 
-      <view class="weui-cells__title">时间</view>
+      <view class="weui-cells__title">耗时</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
           <view class="weui-cell__bd">
-            <picker mode="time" value="{{time}}" start="00:01:00" end="05:59:00" bindchange="bindTimeChange">
+            <picker mode="time" value="{{time}}" start="00:01" end="05:59" bindchange="bindTimeChange">
               <view class="weui-input">{{time}}</view>
             </picker>
           </view>

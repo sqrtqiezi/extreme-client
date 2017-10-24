@@ -9,7 +9,7 @@ Page({
     startDate: null,
     date: null,
     distance: 0,
-    time: '00:01:00',
+    time: '00:01',
     description: '',
     photos: [],
     validator: {

@@ -13,6 +13,7 @@ Page({
 
   onPullDownRefresh() {
     console.log('pull down refresh')
+    wx.stopPullDownRefresh()
     this.refresh()
   },
 
@@ -37,8 +38,6 @@ Page({
       self.setData({
         rankings: res.data.data
       })
-
-      wx.stopPullDownRefresh()
     })
   }
 })

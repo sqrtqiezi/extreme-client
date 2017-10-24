@@ -1,5 +1,5 @@
-const { request } = require('../../utils/network.js')
-const { isCurrentUser } = require('../../utils/util.js')
+const {request} = require('../../utils/network.js')
+const {isCurrentUser} = require('../../utils/util.js')
 Page({
   data: {
     userName: '',
@@ -12,19 +12,11 @@ Page({
       message: ''
     }
   },
-  
+
   addTraining() {
     wx.navigateTo({
       url: '/pages/training/training'
     })
-  },
-
-  deleteTraining(e) {
-    const id = e.currentTarget.dataset.id
-    request(`https://hfextreme.cn/api/trainings/${id}`, {},'DELETE')
-      .then((res) => {
-        this.refresh()
-      })
   },
 
   onLoad(option) {
@@ -49,10 +41,33 @@ Page({
   onShow() {
     this.refresh()
   },
-  
+
+  onDeleteTraining(e) {
+    if (!this.data.isCurrentUser) {
+      return
+    }
+    const id = e.currentTarget.dataset.id
+    const self = this
+    wx.showActionSheet({
+      itemList: ['删除'],
+      success (res) {
+        if (res.tapIndex === 0) {
+          request(`https://hfextreme.cn/api/trainings/${id}`, {}, 'DELETE')
+            .then((res) => {
+              self.refresh()
+            })
+        }
+      },
+      fail (res) {
+        console.log(res.errMsg)
+      }
+    })
+  },
+
   previewPhotos(e) {
     const photos = e.currentTarget.dataset.photos
     const photo = e.currentTarget.dataset.photo
+
     wx.previewImage({
       current: photo,
       urls: photos
@@ -180,7 +195,7 @@ Page({
                 })
             }
           },
-          fail: function (res) {
+          fail(res) {
             console.log(res.errMsg)
           }
         })

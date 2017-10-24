@@ -15,10 +15,9 @@
       <image class="userstats-type" wx:else src="/images/run.png"/>
       <text class="userstats-distance">{{training.distance}}km</text>
       <text class="userstats-distance">{{training.consumption_time}}</text>
-      <text wx:if="{{ isCurrentUser }}" bindtap="deleteTraining" data-id="{{training.id}}" class="userstats-btn-delete">删除</text>
     </view>
     <view class="userstats-body">
-      <view class="userstats-message">
+      <view class="userstats-message" bindtap="onDeleteTraining" data-id="{{training.id}}">
         {{training.description}}
       </view>
       <view class="userstats-photos">
