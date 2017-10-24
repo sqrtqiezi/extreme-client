@@ -86,10 +86,6 @@
   height: auto;
 }
 
-.btn-add-event {
-  margin-top: 32rpx;
-}
-
 .load-message {
   margin: 5rpx 0;
   color: silver;

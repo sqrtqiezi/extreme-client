@@ -3,7 +3,7 @@
   <view class="page-body">
     <view wx:if="{{ validator.invalid }}" class='error-message'>{{ validator.message }}</view>
     
-    <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 打个卡 </button>
+    <button class="btn-add-event" type="primary" size="mini" bindtap="addTraining"> 打卡 </button>
 
     <view class="userstats" wx:for="{{trainings}}" wx:key="id" wx:for-item="training">
       <view class="userstats-heading">

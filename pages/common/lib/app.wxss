@@ -288,3 +288,16 @@ form{
 .comment-owner {
   color: #6f1a60;
 }
+
+
+button.btn-add-event {
+  font-size: .8em !important;
+  padding: .8em 0 !important;
+  position:fixed;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  bottom: 10rpx; 
+  right: 40rpx;
+  z-index: 999;
+}
